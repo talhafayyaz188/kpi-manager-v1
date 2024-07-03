@@ -1,0 +1,83 @@
+
+@import "@simonwep/pickr/dist/themes/classic.min.css"; //color pickr
+@import "@simonwep/pickr/dist/themes/monolith.min.css";
+@import "@simonwep/pickr/dist/themes/nano.min.css";
+;
+
+// ****
+@import './assets/css/icons.css';
+@import "./assets/scss/variables"; //
+@import "./assets/scss/switcher";
+@import "./assets/css/styles.css";
+ 
+@import 'simplebar-react/dist/simplebar.min.css';
+@import 'react-perfect-scrollbar/dist/css/styles.css';
+
+
+.table-wrapper{
+    max-height: 600px !important;
+    overflow-y: scroll !important;
+    padding: 0 !important;
+}
+.table-header-sticky{
+    position:sticky;
+    top: 0;
+    z-index: 3;
+}
+.boxs{
+    width: 100%;
+    height: 100%;            
+    position: absolute;
+    margin-left: 100px;
+    justify-self: center;
+    opacity: 0.8;  /* for demo purpose  */
+
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.stack-top{
+    z-index: 9;
+    margin: -20px -20px -20px -80px; /* for demo purpose  */
+    width: 400px;
+    height: 150px;
+    opacity: 1;
+}
+
+
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  // box-shadow: 0 4px 28px 0 rgba(0, 0, 0, 0.37);
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.custom-toggle-style {
+  border: 1px solid rgba(0, 0, 0, 0.2) !important; /* Slightly darkened border */
+  border-radius: 5px !important;
+}
+
+.custom-toggle-style-2 {
+  border: 1px solid rgba(0, 0, 0, 0.2) !important; /* Slightly darkened border */
+}
+
+#default-radio{
+  border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+#default-checkbox{
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+#custom-switch{
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
