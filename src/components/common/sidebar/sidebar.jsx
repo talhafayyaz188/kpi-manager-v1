@@ -7,7 +7,7 @@ import logo3 from "../../../assets/images/brand-logos/desktop-dark.png";
 import logo4 from "../../../assets/images/brand-logos/toggle-dark.png";
 
 import { connect } from "react-redux";
-import { ThemeChanger } from "../../../redux/action";
+import { ThemeChanger } from "../../../redux/slices/themeSlice";
 import store from "../../../redux/store";
 import SimpleBar from "simplebar-react";
 import Menuloop from "../../ui/menuloop";

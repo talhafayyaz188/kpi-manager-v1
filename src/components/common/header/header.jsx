@@ -39,7 +39,6 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { connect } from "react-redux";
-import { ThemeChanger } from "../../../redux/action";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import pic1 from "../../../assets/images/users/12.jpg";
 import pic2 from "../../../assets/images/users/2.jpg";
@@ -48,6 +47,7 @@ import pic5 from "../../../assets/images/users/8.jpg";
 import pic6 from "../../../assets/images/users/3.jpg";
 import pic7 from "../../../assets/images/users/14.jpg";
 import store from "../../../redux/store";
+import { ThemeChanger } from "../../../redux/slices/themeSlice";
 
 const Header = ({ local_varaiable, ThemeChanger }) => {
   //offcanvas

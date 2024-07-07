@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { APIProvider } from "../context/APIContext";
 import React from "react";
+import rtkstore from "../redux/listingSlices/store";
 
 function App() {
   const [MyclassName, setMyClass] = useState("");
@@ -55,7 +56,9 @@ function App() {
                 <Header />
                 <Sidebar />
                 <div className="main-content app-content" onClick={Bodyclickk}>
-                  <Outlet />
+                  <Provider store={rtkstore}>
+                    <Outlet />
+                  </Provider>
                 </div>
                 {/* <Footer /> */}
               </div>

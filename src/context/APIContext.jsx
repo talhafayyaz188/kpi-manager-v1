@@ -42,7 +42,7 @@ export const APIProvider = ({ children }) => {
         }
       );
       const { inventoryItems, total } = response.data;
-      console.log(response.data);
+      // console.log(response.data);
 
       setTotalPages(total);
       const data = inventoryItems.map((data) => {
@@ -67,10 +67,13 @@ export const APIProvider = ({ children }) => {
     }
   };
 
-  const SearchBySku = async ({ id }) => {
+  const SearchBySku = async (sku) => {
     try {
       setLoadingSearchData(true);
-      const response = await axios.get(`${API_URL}/inventory?sku=${id}`, {
+      const response = await axios.get(`${API_URL}inventory`, {
+        params: {
+          sku: sku,
+        },
         headers: {
           Authorization: "token a8c0f000e3c5cb0b2a84b47ce3173655867f2066",
           "Content-Type": "application/json",
@@ -78,13 +81,16 @@ export const APIProvider = ({ children }) => {
       });
 
       const data = response.data;
+
+      console.log(data);
+
       const inventoryItemsSearchData = {
         condition: data.condition,
         conditionDescription: data.conditionDescription,
         product: data.product,
         availability: data.availability,
         packageWeightAndSize: data.packageWeightAndSize,
-        availabilityKey: data.offer_details.reduce(
+        availabilityKey: data.offer_details?.reduce(
           (item) => item.merchantLocationKey
         ),
         offer_details: data.offer_details.reduce((item) => ({ item })),
@@ -131,6 +137,28 @@ export const APIProvider = ({ children }) => {
     }
   };
 
+  const DeleteBySku = async (sku) => {
+    setLoading(true);
+    try {
+      const response = await axios.delete(API_URL + `inventory`, {
+        params: {
+          sku: sku,
+        },
+        headers: {
+          Authorization: "token a8c0f000e3c5cb0b2a84b47ce3173655867f2066",
+        },
+      });
+      if (response.status === 200) {
+        toast.success(`${sku} Deleted SuccessFully`);
+        console.log(response.data);
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     getInventoryItems();
   }, [page, pageLimit]);
@@ -157,6 +185,7 @@ export const APIProvider = ({ children }) => {
         loadingUpdate,
         setLoadingUpdate,
         searchDatabyparams,
+        DeleteBySku,
       }}
     >
       {children}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Themeprimarycolor, * as switcherdata from "../switcher/data/switcherdata";
 import { Helmet } from "react-helmet-async";
 import { connect } from "react-redux";
-import { ThemeChanger } from "../../../redux/action";
+import { ThemeChanger } from "../../../redux/slices/themeSlice";
 import React from "react";
 
 const Switcher = ({ local_varaiable, ThemeChanger }) => {

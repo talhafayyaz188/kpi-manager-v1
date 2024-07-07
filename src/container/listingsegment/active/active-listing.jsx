@@ -20,12 +20,14 @@ import { useAPI } from "../../../context/APIContext";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 
+import { useGetListingDataQuery } from "../../../redux/listingSlices/rtkQuery";
+
 const ActiveListing = () => {
   const {
     loading,
     setLoading,
     loadingSearchData,
-    // setLoadingSearchData,
+    setLoadingSearchData,
     page,
     setPage,
     pageLimit,
@@ -35,6 +37,7 @@ const ActiveListing = () => {
     searchData,
     SearchBySku,
     setSearchData,
+    DeleteBySku,
   } = useAPI();
 
   const router = useNavigate();
@@ -152,8 +155,12 @@ const ActiveListing = () => {
     if (searchItems.trim() === "") {
       setSearchData([]);
     } else {
-      SearchBySku({ id: searchItems });
+      SearchBySku(searchItems);
     }
+  };
+
+  const handleDelete = (sku) => {
+    DeleteBySku(sku);
   };
 
   useEffect(() => {
@@ -165,7 +172,7 @@ const ActiveListing = () => {
   const ListAPI = () => {
     return searchData.length > 0
       ? filter.fn(searchData)
-      : filter.fn(inventoryItems);
+      : inventoryItems && filter.fn(inventoryItems);
   };
 
   useEffect(() => {
@@ -200,6 +207,7 @@ const ActiveListing = () => {
     const handlePageChange = (page) => {
       setCurrentPage(page);
       onPageChange(page - 1);
+      setLoading(true);
     };
 
     const generatePageNumbers = () => {
@@ -753,7 +761,13 @@ const ActiveListing = () => {
                               >
                                 <FaPen />
                               </Button>
-                              <Button variant="outline-danger">
+                              <Button
+                                //delete module call api
+                                onClick={() => {
+                                  handleDelete(item?.offer_details?.sku);
+                                }}
+                                variant="outline-danger"
+                              >
                                 <FaTrash />
                               </Button>
                             </ButtonGroup>
